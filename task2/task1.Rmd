@@ -1,7 +1,7 @@
 ---
 title: "task1"
 author: "claire"
-date: "2018¦~7¤ë11¤é"
+date: "2018å¹´7æœˆ11æ—¥"
 output: html_document
 ---
 ```{r}
@@ -9,25 +9,25 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 iris
 ```
-#³æÅÜ¼Æ¡GÃş§O«¬
+#å–®è®Šæ•¸ï¼šé¡åˆ¥å‹
 ```{r}
 ggplot(data = iris, aes(x = Species)) +
 geom_bar(fill = "lightblue", colour = "black")
 ```
 
-#³æÅÜ¼Æ¡G³sÄò«¬
+#å–®è®Šæ•¸ï¼šé€£çºŒå‹
 ```{r}
 ggplot(data = iris, aes(x = Sepal.Length)) +
 geom_histogram(bins = 20)
 ```
 
-#ÂùÅÜ¼Æ¡G³sÄò vs ³sÄò
+#é›™è®Šæ•¸ï¼šé€£çºŒ vs é€£çºŒ
 ```{r}
 ggplot(data =iris, aes(x =Sepal.Length, y=Sepal.Width)) +
 geom_point()
 ```
 
-#ÂùÅÜ¼Æ¡GÂ÷´² vs ³sÄò
+#é›™è®Šæ•¸ï¼šé›¢æ•£ vs é€£çºŒ
 ```{r}
 ggplot(data =iris, aes(x=Species, y= Sepal.Length )) +
 geom_boxplot()
