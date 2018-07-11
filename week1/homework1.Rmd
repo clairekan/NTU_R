@@ -1,0 +1,35 @@
+---
+title: "Untitled"
+author: "claire"
+date: "2018¦~7¤ë11¤é"
+output: html_document
+---
+
+Ch1
+Intro to basics
+
+kinds of variable:
+	Decimals values like 4.5 are called numerics.
+	Natural numbers like 4 are called integers. Integers are also numerics.
+	Boolean values (TRUE or FALSE) are called logical.
+	Text (or string) values are called characters.
+
+Vectors
+Vectors are one-dimension arrays that can hold numeric data, character data, or logical data. In other words, a vector is a simple tool to store data. 
+In R, you create a vector with the combine function c()
+
+numeric_vector <- c(1, 2, 3)
+character_vector <- c("a", "b", "c")
+
+names()
+some_vector <- c("John Doe", "poker player")
+names(some_vector) <- c("Name", "Profession")
+
+sum() adding function
+
+comparison:<,>
+
+choose the vector 
+use[] behind the vectors,notice that
+c(2, 3, 4) can be abbreviated to2:4, which generates a vector with all natural numbers from 2 up to 4.
+

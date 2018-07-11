@@ -1,0 +1,20 @@
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+iris
+#單變數：類別型
+ggplot(data = iris, aes(x = Species)) +
+geom_bar(fill = "lightblue", colour = "black")
+
+#單變數：連續型
+ggplot(data = iris, aes(x = Sepal.Length)) +
+geom_histogram(bins = 20)
+
+#雙變數：連續 vs 連續
+ggplot(data =iris, aes(x =Sepal.Length, y=Sepal.Width)) +
+geom_point()
+
+#雙變數：離散 vs 連續
+ggplot(data =iris, aes(x=Species, y= Sepal.Length )) +
+geom_boxplot()
+
+
