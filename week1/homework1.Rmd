@@ -5,8 +5,8 @@ date: "2018年7月11日"
 output: html_document
 ---
 
-Ch1
-Intro to basics
+#Ch1
+###Intro to basics
 
 kinds of variable:
 	Decimals values like 4.5 are called numerics.
@@ -14,22 +14,410 @@ kinds of variable:
 	Boolean values (TRUE or FALSE) are called logical.
 	Text (or string) values are called characters.
 
-Vectors
+###Vectors
 Vectors are one-dimension arrays that can hold numeric data, character data, or logical data. In other words, a vector is a simple tool to store data. 
 In R, you create a vector with the combine function c()
 
-numeric_vector <- c(1, 2, 3)
+###numeric_vector <- c(1, 2, 3)
 character_vector <- c("a", "b", "c")
 
-names()
+###names()
 some_vector <- c("John Doe", "poker player")
 names(some_vector) <- c("Name", "Profession")
 
-sum() adding function
+###sum() adding function
 
-comparison:<,>
+###comparison:<,>
 
-choose the vector 
+###choose the vector 
 use[] behind the vectors,notice that
 c(2, 3, 4) can be abbreviated to2:4, which generates a vector with all natural numbers from 2 up to 4.
+#也可以使用挑出標籤( names() )的方式選取
+poker_vector["Monday"]
+	mean()
+#可用來算vector裡面的元素的平均
+	comparison
+•	 < for less than
+•	> for greater than
+•	<= for less than or equal to
+•	>= for greater than or equal to
+•	== for equal to each other
+•	!= not equal to each other
+#而且可以直接比較vector裡的元素
+```{r}
+c(4, 5, 6) > 5
+```
+###selection_vector
+#可以從元素裡挑出符合(TRUE)條件的元素
+poker_vector[selection_vector]
+R knows what to do when you pass a logical vector in square brackets: it will only select the elements that correspond to TRUE in selection_vector.
+
+
+
+###Matrix(two-dimensional)
+
+In R, a matrix is a collection of elements of the same data type (numeric, character, or logical) arranged into a fixed number of rows and columns. 
+construct a matrix in R with the matrix()
+```{r}
+matrix(1:9, byrow = TRUE, nrow = 3)
+```
+The first argument: the collection of elements that R will arrange into the rows and columns of the matrix.
+The argument ‘byrow’: ndicates that the matrix is filled by the rows. If we want the matrix to be filled by the columns, we just place byrow = FALSE
+The third argument ‘nrow’: indicates that the matrix should have three rows.
+#註:1:9的部分也可以換成vector
+
+###Naming a matrix
+rownames(my_matrix) <- row_names_vector
+colnames(my_matrix) <- col_names_vector
+
+###rowSums()
+conveniently calculates the totals for each row of a matrix. This function creates a new vector
+#加總計算出的東東是vector)
+rowSums(my_matrix)
+
+###cbind()
+#可增加新的/合併columns(以vector或是metrix的型態)
+big_matrix <- cbind(matrix1, matrix2, vector1 ...)
+
+ Construct star_wars_matrix
+```{r}
+box_office <- c(460.998, 314.4, 290.475, 247.900, 309.306, 165.8)
+star_wars_matrix <- matrix(box_office, nrow = 3, byrow = TRUE,
+                           dimnames = list(c("A New Hope", "The Empire Strikes Back", "Return of the Jedi"), 
+                                           c("US", "non-US")))
+```
+ The worldwide box office figures
+worldwide_vector <- rowSums(star_wars_matrix)
+
+Bind the new variable worldwide_vector as a column to star_wars_matrix
+all_wars_matrix <- cbind(star_wars_matrix,worldwide_vector)
+#被加的在前
+
+###rbind()
+#可增加新的/合併rows(以vector或是metrix的型態)
+
+###colSums()
+#以column為單位加總
+
+###Selection of matrix elements
+#可用[]來選取
+my_matrix[1,2] first row and second column.
+my_matrix[,1] selects all elements of the first column.
+#加減乘除都可用在metrix
+For example, 2 * my_matrix multiplies each element of my_matrix by two
+
+
+
+###Factor
+he term factor refers to a statistical data type used to store categorical variables.  categorical variable can belong to a limited number of categories.
+To create factors in R, you make use of the function factor(). 
+#'factor levels’是類別的種類，例如有個fector是c(男,女,男,女)，那麼leval就是男,女。
+There are two types of categorical variables: a nominal categorical variable and an ordinal categorical variable.
+#Nominal:不能排順序的(老鼠，獅子，馬)
+#Ordinal:可以台順序的(氣溫)
+
+###Factor levels
+#可以更換level的名字
+levels(factor_vector) <- c("name1", "name2",...)
+
+###summary().
+#可以計算類別出現的次數
+
+###Ordered factors
+#使用factor()之後會使裡面的數值無法比較，這時需要add two additional arguments: ordered and levels
+factor(some_vector,
+       ordered = TRUE,
+       levels = c("lev1", "lev2" ...))
+
+
+###data frame
+A data frame has the variables of a data set as columns and the observations as rows.
+
+###head()/tail()/str()
+#秀出前/後幾筆/看出結構
+
+###build datafram
+#data.fram()裡放vector
+
+#選取資料
+#方法跟metrix一樣，但有更輕鬆的方式
+#planets_df[1:3,2]  變成  planets_df[1:3,"type"]
+#如果要整個column的東西，也可以
+#planets_df$diameter
+#如果要選取TRUE的資料,用name
+#planets_df[rings_vector, "name"]  (有環的行星名字)
+#或是用subset()
+#subset(planets_df, subset = rings)
+#第二個放條件(例如subset(planets_df,diameter < 1))
+
+###order
+order()>>用vector來排: positions <- order(planets_df$diameter)
+list
+A list in R allows you to gather a variety of objects under one name.
+
+###Creating a list
+my_list <- list(comp1, comp2 ...)
+	named list
+my_list <- list(name1 = your_comp1, 
+                name2 = your_comp2)
+###	Select
+#要用[[  ]]，也可以用$
+
+###c()
+#可用來將新資料加入list
+ext_list <- c(my_list , my_val)
+#前者是原先的list，後者是要加上去的東西
+
+
+
+
+#Ch2
+###Equality
+#等於==, 不等於!= (字母比順序)，TRUE=1,FALSE=0
+Equality
+
+###AND operator(&)
+#交集。
+
+###OR operator(|)
+#聯集，只有false 和 false是false
+
+###NOT operator(!)
+#如果連用兩個&&或是||就只會看第一個得比較
+
+###Conditional Statements
+If
+Else
+else if
+
+if (condition) {
+  expr
+}
+
+
+###While loop
+
+while (condition) {
+  expr
+}
+
+break statement is a control statement. When R encounters it, the while loop is abandoned completely.
+
+###For loop
+
+#####nchar(string)
+#string的字數
+
+#####next
+#跳過符合某樣條件的物件，直接進入下一個
+```{r}
+primes <- c(2, 3, 5, 7, 11, 13)
+
+# loop version 1
+for (p in primes) {
+  print(p)
+}
+
+# loop version 2
+for (i in 1:length(primes)) {
+  print(primes[i])
+}
+```
+
+###length(list)
+#可顯現list的長度
+
+###paste
+can bring the variables into the answer
+
+###separate the vector 
+```{r}
+# Pre-defined variables
+rquote <- "r's internals are irrefutably intriguing"
+chars <- strsplit(rquote, split = "")[[1]]
+chars
+```
+
+the way to count the number of words
+```{r}
+# Pre-defined variables
+rquote <- "r's internals are irrefutably intriguing"
+chars <- strsplit(rquote, split = "")[[1]]
+
+# Initialize rcount
+rcount <- 0
+
+# Finish the for loop
+for (char in chars) {
+  if (char=="r"){
+    rcount<-rcount+1
+  }
+  if (char=="u"){
+    break
+  }
+}
+rcount
+```
+
+###Introduction to Functions
+#####black box principle
+
+#####sd()>>Standard deviation(標準差)
+
+#####na.rm的用法
+na.rm=remove NA
+
+if want to know how to use the function, you can type
+help(sample)
+```{r}
+?sample
+```
+
+###args(sample)
+can take a over look to  arguments of the sample()function
+
+###trim
+#trim会在首尾分别去除N个异常值，其中N=样本数量*要去除的百分比(即是trim的值)
+#所以mean(a, 0.1)就会在a的首尾去除11*0.1=1个数据
+
+###abs()
+subtract function
+
+some exsample:mean(x, trim = 0, na.rm = FALSE, ...)
+
+build my function
+```{r}
+my_fun <- function(arg1, arg2) {
+  body
+}
+```
+
+abs(x)>> absolute values
+
+default 
+#默認
+```{r}
+my_fun <- function(arg1, arg2 = val2) {
+  body
+}
+```
+###Arg2 is optional argument
+
+###install.packages():install functions
+
+###library(),require():apply the specific functions ,like “ggplot”
+
+###search():help to know the functions that are available to be used. 
+
+###apply:library(c("data.table", "rjson"))
+
+
+
+###lapply
+it likes the for loop in python, which can repeate a function tiward list and data.frame .
+
+###tolower() change big alphabet to small
+lapply(list,function)
+lapply(list,function,specific variable in function)
+
+###sapply
+sapply(list,function)
+The lapply returns a list, while the sapply returns a vector that is a simplified version of this list
+
+###Vapply
+vapply returns a vector that is a specific simplified version of a list.
+#可以指定用什麼格式簡化
+sapply(list,function, kind)
+
+###Useful Functions
+abs()>>absolute value
+
+###round()>>
+#四捨五入
+
+###rev()>> provides a reversed version of its argument.
+
+###seq(): Generate sequences, by specifying the from, to, and by arguments.
+# seq函数是产生序列用的他的用法是seq(from,to,by)或者是seq（下界，by=，length=）
+
+###rep(): Replicate elements of vectors and lists.
+
+###sort(): Sort a vector in ascending order. Works on numerics, but also on character strings and logicals.
+
+###rev(): Reverse the elements in a data structures for which reversal is defined.
+
+###str(): Display the structure of any R object.
+
+###append(): Merge vectors or lists.
+
+###is.*(): Check for the class of an R object.
+
+###as.*(): Convert an R object from one class to another.
+
+###unlist(): Flatten (possibly embedded) lists to produce a vector.
+
+
+Regular Expressions
+
+###Grepl()
+^a>>start with a
+a＄>>wnd with a
+
+###grep()
+
+###sub()/gsub()
+sub() only replaces the first match, whereas gsub() replaces all matches.
+
+sub(pattern = "Adam", replacement = "world", x=vector)
+
+
+###date
+Sys.date()>>show the day now
+
+Sys.time()>>show the time now
+
+as.Date>>Create date
+
+%Y: 4-digit year (1982)
+%y: 2-digit year (82)
+%m: 2-digit month (01)
+%d: 2-digit day of the month (13)
+%A: weekday (Wednesday)
+%a: abbreviated weekday (Wed)
+%B: month (January)
+%b: abbreviated month (Jan)
+```{r}
+# Definition of character strings representing times
+str1 <- "May 23, '96 hours:23 minutes:01 seconds:45"
+str2 <- "2012-3-12 14:23:08"
+
+# Convert the strings to POSIXct objects: time1, time2
+time1 <- as.POSIXct(str1, format = "%B %d, '%y hours:%H minutes:%M seconds:%S")
+time2<-as.POSIXct(str2)
+
+# Convert times to formatted strings
+format(time1,"%M")
+format(time2,"%I:%M %p")
+
+```
+%H: hours as a decimal number (00-23)
+%I: hours as a decimal number (01-12)
+%M: minutes as a decimal number
+%S: seconds as a decimal number
+%T: shorthand notation for the typical format %H:%M:%S
+%p: AM/PM indicator
+```{r}
+now <- Sys.time()
+now + 3600          # add an hour
+now - 3600 * 24     # subtract a day
+```
+```{r}
+birth <- as.POSIXct("1879-03-14 14:37:23")
+death <- as.POSIXct("1955-04-18 03:47:12")
+einstein <- death - birth
+einstein
+```
+
+
+
 
