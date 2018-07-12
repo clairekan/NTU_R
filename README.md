@@ -11,6 +11,13 @@ Department：臺大地理一
 
 Intro：嗨，大家好，我是甘佳昀，興趣是看音樂劇與閱讀各類文章，期望在這門課能夠鍛鍊如何更靈活的思考並更認識資料科學的知識！！
 
+## Week1
+
+#### hw1- 
+[hw1](https://clairekan.github.io/NTU_R/week1/homework1.html)
+
+
+
 ## Week2
 
 #### task1- 
