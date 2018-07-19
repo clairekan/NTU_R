@@ -1,0 +1,103 @@
+---
+title: "NOTE"
+author: "claire"
+date: "2018年7月18日"
+output: html_document
+---
+
+
+from https://www.kaggle.com/mrisdal/happiness-and-open-data/notebook to analysis the relationship between open data and happoness of poeple.
+
+```{r}
+#先取得資料，將兩筆資料合併，然後將複雜的資料名稱簡易化
+library(dplyr)
+#記得要先設定好工作路徑跟相對檔名(點選 more 裡的 set as working directory)
+
+# Read in data files from `open-data` and `world-happiness` datasets
+
+open_data <- read.csv("countries.csv", stringsAsFactors=F)
+happiness <- read.csv("2015.csv", stringsAsFactors=F)
+#stringsAsFactors = FALSE tells R to keep character variables as they are rather than convert to factors, which are a little harder to work with.(不讓r將character 轉成 factor)
+
+# Rename from "Country Name" to just "Country" so it's easier to join
+colnames(open_data)[2] <- "Country"
+#colnames()可以改column的名字
+
+# Join the two dataset files on "Country"
+open_data_happiness <- open_data %>%
+  left_join(happiness, by = "Country") %>%
+  mutate(Country = factor(Country)) %>%
+  # Keep only columns I plan to use
+  select(Country, Region, X2015.Score, Happiness.Score, Economy..GDP.per.Capita., 
+         Family, Health..Life.Expectancy., Freedom, Trust..Government.Corruption., 
+         Generosity, Dystopia.Residual)
+#left_join可以藉由兩數據中相同的column來做連接，並且是往左增加
+# Give the columns nicer names now that our data is in one dataframe
+colnames(open_data_happiness) <- c("Country", "Region", "Openness", "Happiness", "GDP", "Family", "Health", "Freedom", "Trust", "Generosity", "DystopiaResidual")
+#將數據的名字重新命名以便閱讀
+#到此為止，已經將數據初步整理
+ 
+
+library(formattable)
+#formmatable可將數據格式化，如百分比，逗號，貨幣，會計和科學，並用表格呈現，是一種易於閱讀的方式
+#將資料依開放程度排名，並四捨五入資料至小數第二位，再選出前十
+open_data_happiness%>%
+  arrange(desc(Openness))%>%
+#mutate_each中的計算會套用至每一行column，用round四捨五入至小數點第二位，其中Country,Region,Opennes 不用被計算
+  mutate_each(funs(round(.,2)),-c(Country,Region,Openness))%>%
+  head(10)%>%
+formattable(list(
+   Openness = color_bar("yellow"),
+    Happiness = color_bar("pink"),
+    GDP = color_bar("deepskyblue"),
+    Family = color_bar("deepskyblue"),
+    Health = color_bar("deepskyblue"),
+    Freedom = color_bar("deepskyblue"),
+    Trust = color_bar("deepskyblue"),
+    Generosity = color_bar("deepskyblue"),
+    DystopiaResidual = color_bar("deepskyblue")
+  ), align = "l"
+)
+#表格完成
+
+```
+
+```{r}
+#探索開放程度與幸福程度之間的關係
+library(ggplot2)
+library(ggthemes)
+library(viridis)
+ggplot(open_data_happiness, 
+  aes(x = Openness, 
+      y = Happiness)) +
+  geom_point(aes(colour = Region),
+             size = 2) +
+  #以region為點點顏色的分別基準
+  geom_smooth(method="lm") +
+#geom_smooth可以劃出趨勢曲線
+  labs(x = "Openness Score",
+       y = "Happiness Score",
+       title = "Are open data friendly countries happy countries?",
+       subtitle = "Data openness and happiness by country in 2015") +
+  scale_color_viridis(discrete = T) +
+#scale_color_viridis讓顏色漸層有方向
+  theme_minimal() +
+  theme(text = element_text(size=16))
+```
+
+```{r correlation_plot}
+#畫出各個變量的相關係數(運用corrplot)
+library(corrplot)
+
+# Subset the data to include only the variables we want to look at
+
+open_data_corr <- open_data_happiness %>%
+  select(Openness, Happiness, GDP, Family, Health, 
+         Freedom, Trust, Generosity, DystopiaResidual) %>%
+  mutate(Openness = as.numeric(Openness))
+
+od_corr <- cor(open_data_corr, use = "complete", method = "pearson")
+
+corrplot(od_corr)
+
+```
