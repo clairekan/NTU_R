@@ -21,9 +21,9 @@ Intro：嗨，大家好，我是甘佳昀，興趣是看音樂劇與閱讀各類
 ## Week2
 
 #### hw2- 
-[hw2-part1](https://clairekan.github.io/NTU_R/task2/task1.html)
+[hw2-part1](https://clairekan.github.io/NTU_R/week2/task1.html)
 
-[hw2-part2](https://clairekan.github.io/NTU_R/task2/Task2%20(2).html)
+[hw2-part2](https://clairekan.github.io/NTU_R/week2/Task2%20(2).html)
 
 
 ## Week3
