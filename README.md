@@ -30,3 +30,5 @@ Intro：嗨，大家好，我是甘佳昀，興趣是看音樂劇與閱讀各類
 
 #### hw3-
 [hw3-part1](https://clairekan.github.io/NTU_R/week3/hw1.html)
+
+[hw3-part2](https://clairekan.github.io/NTU_R/week3/hw2.html)
