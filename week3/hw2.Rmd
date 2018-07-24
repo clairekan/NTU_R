@@ -12,6 +12,7 @@ library(factoextra)
 library(Matrix)
 library(NLP)
 library(wordcloud)
+library(dplyr)
 
 music.corpus <- Corpus( DirSource("./musical") )
 #DirSource是Directory Source顧名思義就是指定一個資料夾作為資料來源所以參數是要放一個資料夾的路徑
@@ -67,6 +68,22 @@ query.tfidf <- function(q){
   return (q.tfidf)
 }
 query.tfidf(c("angel","christine","phantom","music"))
+```
+```{r}
+#三個主要角色最常出現台詞比較
+cdocs.tfidf<-as.data.frame(docs.tfidf)
+christine<-cdocs.tfidf%>%tibble::rownames_to_column()
+christine<-arrange(christine,desc(CHRISTINE.r.txt))
+head(christine)
+#我真的不知道為何第一名是"fat"(崩潰)，可能斷詞斷錯了
+
+phantom<-cdocs.tfidf%>%tibble::rownames_to_column()
+phantom<-arrange(phantom,desc(PHANTOM.r.txt))
+head(phantom)
+
+roul<-cdocs.tfidf%>%tibble::rownames_to_column()
+roul<-arrange(roul,desc(RAOUL.r.txt))
+head(roul)
 ```
 
 ```{r}

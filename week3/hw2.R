@@ -25,6 +25,7 @@ music.corpus <- tm_map(music.corpus, toSpace, "with")
 music.corpus <- tm_map(music.corpus, toSpace, "for")
 music.corpus <- tm_map(music.corpus, toSpace, "say")
 music.corpus <- tm_map(music.corpus, toSpace, "the")
+music.corpus <- tm_map(music.corpus, toSpace, "fat")
 
 music.corpus <- tm_map(music.corpus, removePunctuation)
 music.corpus<- tm_map(music.corpus, content_transformer(tolower))
@@ -36,8 +37,19 @@ idf.function <- function(word_doc) { log2( (length(word_doc)+1) / nnzero(word_do
 docs.idf <- apply(as.matrix(music.tdm), 1, idf.function)
 docs.tfidf <- docs.tf * docs.idf
 
+#三個主要角色最常出現台詞比較
 cdocs.tfidf<-as.data.frame(docs.tfidf)
-arrange(cdocs.tfidf,desc(CHRISTINE.r.txt))
+christine<-cdocs.tfidf%>%tibble::rownames_to_column()
+christine<-arrange(a,desc(CHRISTINE.r.txt))
+head(christine)
+
+phantom<-cdocs.tfidf%>%tibble::rownames_to_column()
+phantom<-arrange(a,desc(PHANTOM.r.txt))
+head(phantom)
+
+roul<-cdocs.tfidf%>%tibble::rownames_to_column()
+roul<-arrange(a,desc(RAOUL.r.txt))
+head(roul)
 
 #查詢字頻
 query.tfidf <- function(q){
