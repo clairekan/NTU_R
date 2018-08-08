@@ -38,4 +38,5 @@ Intro：嗨，大家好，我是甘佳昀，興趣是看音樂劇與閱讀各類
 
 #### Final Project-
 [Final project](https://bourbon0212.shinyapps.io/Youbike/)
+[PPT](https://github.com/clairekan/NTU_R/blob/master/Final/%E6%9A%91%E5%81%87%E5%A0%B1%E5%91%8Appt%20(3).pptx)
 
