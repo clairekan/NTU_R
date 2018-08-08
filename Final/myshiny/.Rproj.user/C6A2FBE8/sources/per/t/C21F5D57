@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1533105120797.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4245652047",
+    "id" : "C21F5D57",
+    "lastKnownWriteTime" : 1533107632,
+    "last_content_update" : 1533107632099,
+    "path" : "D:/github/NTU_R/week5/myshiny/app.R",
+    "project_path" : "app.R",
+    "properties" : {
+        "cursorPosition" : "50,0",
+        "scrollLine" : "29"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,12 @@
+name: myshiny
+title: myshiny
+username:
+account: claire1
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 393044
+bundleId: 1511044
+url: https://claire1.shinyapps.io/myshiny/
+when: 1533106883.9989
+asMultiple: FALSE
+asStatic: FALSE
