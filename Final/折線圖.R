@@ -5,7 +5,7 @@ library(lubridate)
 library(stringr)
 
 sbi <- read.csv('D:/gitHub/NTU_R/Final/Youbike_sbi(1).csv')
-sbi_line <- sbi%>%gather( Time, value, X2018.8.1.7:X2018.8.4.12, na.rm = TRUE)
+sbi_line <- sbi%>%gather( Time, value, X2018.8.1.7:X2018.8.7.24, na.rm = FALSE)
 sbi_line<-select(sbi_line,sarea,Time,value)
 sbi_line<-sbi_line%>%group_by(sarea,Time)%>%summarise(mean=mean(value))
 sbi_line$Time <- str_replace(sbi_line$Time, 'X', '')
@@ -38,6 +38,6 @@ ggplot() +
 #目前為止的依區空位數變化
 sbi_line1<-filter(sbi_line,sarea=="大同區",day >= as.Date("2018-08-01") & day <=as.Date("2018-08-03") )
 ggplot() + 
-  geom_line(aes(x=Time, y=mean), color='red',data=sbi_line1)+
-  geom_rect(data=shade, 
-            mapping=aes(xmin=x1, xmax=x2, ymin=-Inf, ymax=Inf), color='grey')
+  geom_line(aes(x=Time, y=mean), color='red',data=sbi_line1)+ylim(5,25)
+  #geom_rect(data=shade, 
+            #mapping=aes(xmin=x1, xmax=x2, ymin=-Inf, ymax=Inf), color='grey')

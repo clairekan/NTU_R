@@ -1,0 +1,12 @@
+name: Youbike
+title: Youbike
+username:
+account: bourbon0212
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 393140
+bundleId: 1518246
+url: https://bourbon0212.shinyapps.io/Youbike/
+when: 1533392320.3897
+asMultiple: FALSE
+asStatic: FALSE
