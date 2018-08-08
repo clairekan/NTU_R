@@ -36,3 +36,6 @@ Intro：嗨，大家好，我是甘佳昀，興趣是看音樂劇與閱讀各類
 #### hw4-
 [hw4-part1](https://clairekan.github.io/NTU_R/week4/hw1.html)
 
+#### Final Project-
+[Final project](https://bourbon0212.shinyapps.io/Youbike/)
+
